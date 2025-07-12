@@ -92,6 +92,76 @@ This folder is the heart of your application. All the actual program logic lives
 7.  `server.py` gets the report and sends it back to the browser as a JSON response.
 8.  **`script.js`** receives the response, formats it into the nice report card HTML, and displays it in the chat window of **`index.html`**.
 
+---
+
+## Project Setup and Installation
+
+This guide provides the complete instructions to set up and run the application on a local machine.
+
+### 1. Prerequisites
+
+-   Python 3.9 or higher.
+-   Git for cloning the repository.
+-   A LangSmith account and API key for observability. You can sign up at [smith.langchain.com](https://smith.langchain.com/).
+
+### 2. Step-by-Step Installation
+
+#### **Step A: Clone the Repository**
+
+First, clone the project from GitHub to your local machine using the following command in your terminal:
+
+```bash
+git clone <your-repository-url-here>
+cd STUDIO
+```
+
+#### **Step B: Configure Environment Variables**
+
+The application requires an `.env` file to store your secret API key.
+
+1.  Create a new file named `.env` in the root directory of the project.
+2.  Add your LangSmith API key to this file. You can find your key in the [LangSmith Settings page](https://smith.langchain.com/settings).
+
+    **.env**
+    ```
+    # --- LangSmith Tracing ---
+    # This enables observability for all agent runs.
+    LANGCHAIN_TRACING_V2="true"
+    LANGCHAIN_API_KEY="YOUR_LANGSMITH_API_KEY_HERE"
+    LANGCHAIN_PROJECT="Business Analysis Studio"
+    ```
+
+#### **Step C: Create and Activate a Virtual Environment**
+
+It is a best practice to use a virtual environment to manage project-specific dependencies.
+
+1.  From the project's root directory, create the virtual environment:
+    ```bash
+    python -m venv venv
+    ```
+
+2.  Activate the environment:
+    -   **On Windows:**
+        ```bash
+        venv\Scripts\activate
+        ```
+    -   **On macOS / Linux:**
+        ```bash
+        source venv/bin/activate
+        ```
+    Your terminal prompt should now be prefixed with `(venv)`.
+
+#### **Step D: Install Dependencies**
+
+The project uses a `pyproject.toml` file to manage its dependencies. Install all required packages using `pip`.
+
+```bash
+# The '.' tells pip to install from the pyproject.toml in the current directory.
+# The '-e' flag installs it in "editable" mode, best for development.
+pip install -e .
+```
+
+The setup is now complete. The application is ready to be run in either development or local production mode.
 
 ---
 
