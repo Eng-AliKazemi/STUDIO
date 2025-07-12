@@ -180,6 +180,81 @@ LangServe is a library for deploying LangChain and LangGraph objects as robust, 
     -   **`/agent/invoke`:** A primary endpoint for running the agent with a single input.
     -   **`/agent/batch`:** An endpoint for running the agent on multiple inputs in parallel.
     -   **`/agent/stream`:** An endpoint for streaming outputs as they are generated.
-    -   **`/agent/playground/`:** An automatically generated web interface for interacting with the agent. This provides an alternative method for testing the agent's logic, accessible at `http://127.0.0.1:8000/agent/playground/`.
+    -   **`/agent/playground/`:** An automatically generated web interface for interacting with the agent. This provides an alternative method for testing the agent's logic, accessible at `http://127.0.0.1:5050/agent/playground/`.
 
 In this project, the custom UI endpoint (`/analyze`) acts as a client to the agent. It receives user data and then calls the agent internally. This architecture decouples the core agent logic from the user-facing presentation layer.
+
+
+---
+
+## Production Usage Guide (Local Deployment)
+
+The application is served using **Uvicorn**, a standard, high-performance web server for FastAPI applications.
+
+### 1. Prerequisites
+
+Before running the server, ensure the following setup is complete:
+
+1.  **Project Files:** The complete project structure, including the `app` directory and configuration files, must be in place.
+2.  **Dependencies:** All required Python packages must be installed from the `pyproject.toml` file into a virtual environment.
+3.  **Environment Variables:** The `.env` file must be present in the project's root directory and must contain a valid `LANGCHAIN_API_KEY` to enable LangSmith tracing.
+
+### 2. Execution Steps
+
+1.  **Activate the Virtual Environment**
+    Open a terminal in the project's root directory and activate the Python virtual environment.
+    ```bash
+    # On Windows
+    venv\Scripts\activate
+
+    # On macOS/Linux
+    source venv/bin/activate
+    ```
+
+2.  **Start the Uvicorn Server**
+    Execute the following command to start the web server. Note the absence of the `--reload` flag, which is standard practice for a stable deployment.
+    ```bash
+    uvicorn app.server:app --host 0.0.0.0 --port 5050
+    ```
+
+    -   **`uvicorn`**: The command to run the ASGI server.
+    -   **`app.server:app`**: Specifies the location of the FastAPI application instance (the `app` variable inside the `app/server.py` file).
+    -   **`--host 0.0.0.0`**: Binds the server to all available network interfaces, making it accessible from other devices on the same network (use `127.0.0.1` to restrict access to the local machine only).
+    -   **`--port 5050`**: Specifies the port on which the server will listen for requests.
+
+3.  **Verify Server Status**
+    The terminal will display output indicating that the server has started successfully.
+    ```
+    INFO:     Started server process [PID]
+    INFO:     Waiting for application startup.
+    INFO:     Application startup complete.
+    INFO:     Uvicorn running on http://0.0.0.0:5050 (Press CTRL+C to quit)
+    ```
+    The application is now running as a persistent service.
+
+### 3. Accessing and Using the Application
+
+Once the server is running, the application can be accessed in two ways:
+
+#### A. Custom User Interface (Primary Access)
+
+This is the main entry point for end-users.
+
+-   **URL:** `http://localhost:5050`
+-   **Usage:**
+    1.  Navigate to the URL in a web browser.
+    2.  The full chat interface will be displayed.
+    3.  Input the required daily and previous day's business data into the form.
+    4.  Click the "Analyze" button to submit the data and receive the agent's report.
+    5.  The settings panel remains available for viewing the current configuration.
+
+#### B. LangServe API Playground (For Direct API Testing)
+
+LangServe automatically generates a separate interface for testing the agent's API directly.
+
+-   **URL:** `http://localhost:5050/agent/playground/`
+-   **Usage:** This interface allows for sending structured JSON input directly to the agent and viewing the raw JSON output. It is primarily a tool for developers or for integrating the agent with other services.
+
+### 4. Stopping the Server
+
+To stop the application, return to the terminal where the Uvicorn server is running and press `Ctrl+C`. This will gracefully shut down the server process.
