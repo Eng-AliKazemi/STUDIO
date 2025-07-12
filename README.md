@@ -111,7 +111,7 @@ This guide provides the complete instructions to set up and run the application 
 First, clone the project from GitHub to your local machine using the following command in your terminal:
 
 ```bash
-git clone <your-repository-url-here>
+git clone https://github.com/Eng-AliKazemi/STUDIO.git
 cd STUDIO
 ```
 
