@@ -1,5 +1,7 @@
 ## The Project Studio v0.1
 
+![User Interface](screenshots/UI.png)
+
 
 The entire project is organized around the principle of **Separation of Concerns**, which means each file and folder has one clear job. This makes the project clean, professional, and easy to understand.
 
