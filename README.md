@@ -94,15 +94,22 @@ This folder is the heart of your application. All the actual program logic lives
 
 ---
 
+You are absolutely right. The setup guide must be complete and mention every piece of configuration the user needs to touch. My apologies for leaving out those critical details.
+
+Here is the revised and complete "Project Setup" documentation. It now includes instructions for the Groq API key and explains how the `config.yaml` file is used and can be modified via the UI.
+
+---
+
 ## Project Setup and Installation
 
 This guide provides the complete instructions to set up and run the application on a local machine.
 
 ### 1. Prerequisites
 
--   Python 3.9 or higher.
+-   Python 3.12 or higher.
 -   Git for cloning the repository.
--   A LangSmith account and API key for observability. You can sign up at [smith.langchain.com](https://smith.langchain.com/).
+-   A **Groq API Key** for language model access. You can get a key from the [GroqCloud Console](https://console.groq.com/keys).
+-   A **LangSmith API Key** for application tracing and observability. You can sign up and get a key from [smith.langchain.com](https://smith.langchain.com/).
 
 ### 2. Step-by-Step Installation
 
@@ -111,21 +118,23 @@ This guide provides the complete instructions to set up and run the application 
 First, clone the project from GitHub to your local machine using the following command in your terminal:
 
 ```bash
-git clone https://github.com/Eng-AliKazemi/STUDIO.git
-cd STUDIO
+git clone <your-repository-url-here>
+cd STUDIO_FINAL_SRC  # Or your project's root folder name
 ```
 
-#### **Step B: Configure Environment Variables**
+#### **Step B: Configure Environment Variables (`.env`)**
 
-The application requires an `.env` file to store your secret API key.
+This file holds your secret API keys.
 
-1.  Create a new file named `.env` in the root directory of the project.
-2.  Add your LangSmith API key to this file. You can find your key in the [LangSmith Settings page](https://smith.langchain.com/settings).
-3.  Add groq API key.
+1.  In the root directory of the project, create a new file named `.env`.
+2.  Add your Groq and LangSmith API keys to this file.
 
     **.env**
     ```
-    GROQ_API_KEY="gsk_***"
+    # --- LLM Provider API Key ---
+    # The agent uses this key if it needs to call a language model.
+    GROQ_API_KEY="YOUR_GROQ_API_KEY_HERE"
+
     # --- LangSmith Tracing ---
     # This enables observability for all agent runs.
     LANGCHAIN_TRACING_V2="true"
@@ -133,9 +142,25 @@ The application requires an `.env` file to store your secret API key.
     LANGCHAIN_PROJECT="Business Analysis Studio"
     ```
 
-#### **Step C: Create and Activate a Virtual Environment**
+#### **Step C: Review Application Configuration (`config.yaml`)**
 
-It is a best practice to use a virtual environment to manage project-specific dependencies.
+This file holds non-secret settings that control the application's behavior. The project comes with default settings, which you can review or modify.
+
+**`config.yaml`**
+```yaml
+# These settings control which language model is used.
+# While the current business agent is deterministic, these settings
+# are used by the UI and would be used by any future LLM-powered nodes.
+llm_settings:
+  provider_url: "https://api.groq.com/openai/v1"
+  model_name: "llama-3.3-70b-versatile" # Default model
+  temperature: 0.7
+```
+**Note:** These settings can be changed dynamically through the application's user interface after the server is running.
+
+#### **Step D: Create and Activate a Virtual Environment**
+
+Using a virtual environment is a best practice to manage project-specific dependencies.
 
 1.  From the project's root directory, create the virtual environment:
     ```bash
@@ -153,9 +178,9 @@ It is a best practice to use a virtual environment to manage project-specific de
         ```
     Your terminal prompt should now be prefixed with `(venv)`.
 
-#### **Step D: Install Dependencies**
+#### **Step E: Install Dependencies**
 
-The project uses a `pyproject.toml` file to manage its dependencies. Install all required packages using `pip`.
+The project uses a `pyproject.toml` file to define all its dependencies. Install them using `pip`.
 
 ```bash
 # The '.' tells pip to install from the pyproject.toml in the current directory.
@@ -163,8 +188,7 @@ The project uses a `pyproject.toml` file to manage its dependencies. Install all
 pip install -e .
 ```
 
-The setup is now complete. The application is ready to be run in either development or local production mode.
-
+The setup is now complete. The application is ready to be run. See the subsequent sections for instructions on running in development mode (`langgraph dev`) or local production mode (`uvicorn`).
 ---
 
 ## LangGraph Studio Integration
