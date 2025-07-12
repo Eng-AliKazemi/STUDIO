@@ -158,6 +158,7 @@ This setup enables a hot-reloading feature. Any saved changes to the `app/agent.
 
 ### 1. LangSmith: Observability Platform
 
+![LangSmith](screenshots/LANGSMITH.png)
 
 LangSmith provides comprehensive tracing and monitoring capabilities for the LangGraph agent. It functions as an observability layer, capturing detailed records of every agent execution.
 
