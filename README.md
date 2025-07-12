@@ -1,6 +1,6 @@
 ## The Project Studio v0.1
 
-![LANGGRAPH STUDIO Screenshot](sreenshots/UI.png)
+![User Interface](sreenshots/UI.png)
 
 The entire project is organized around the principle of **Separation of Concerns**, which means each file and folder has one clear job. This makes the project clean, professional, and easy to understand.
 
@@ -96,7 +96,7 @@ This folder is the heart of your application. All the actual program logic lives
 
 ## LangGraph Studio Integration
 
-![LANGGRAPH STUDIO Screenshot](sreenshots/LANGGRAPH_STUDIO.png)
+![LangGraph Studio](sreenshots/LANGGRAPH_STUDIO.png)
 
 ### 1. Overview
 
@@ -157,7 +157,7 @@ This setup enables a hot-reloading feature. Any saved changes to the `app/agent.
 
 ### 1. LangSmith: Observability Platform
 
-![LANGGRAPH STUDIO Screenshot](sreenshots/LANGSMITH.png)
+![LangSmith](sreenshots/LANGSMITH.png)
 
 LangSmith provides comprehensive tracing and monitoring capabilities for the LangGraph agent. It functions as an observability layer, capturing detailed records of every agent execution.
 
