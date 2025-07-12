@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Business Analyst | By Ali Kazemi</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div id="chat-container">
+        <header>
+            <h1>AI Business Analyst</h1>
+            <!-- FIX: Added aria-label for accessibility -->
+            <button id="settings-btn" aria-label="Settings"><i class="fas fa-cog"></i></button>
+        </header>
+        <div id="chat-window">
+            <div class="message agent-message">
+                <p>Welcome! Provide your business data to get an instant analysis. Click the <i class="fas fa-cog" aria-hidden="true"></i> to configure settings.</p>
+            </div>
+        </div>
+        <div id="input-form-container">
+            <form id="data-form">
+                <div class="form-grid">
+                    <fieldset><legend>Today's Data</legend><input type="number" id="daily_revenue" placeholder="Revenue" required><input type="number" id="daily_cost" placeholder="Cost" required><input type="number" id="daily_customers" placeholder="Customers" required></fieldset>
+                    <fieldset><legend>Previous Day's Data</legend><input type="number" id="prev_revenue" placeholder="Revenue" required><input type="number" id="prev_cost" placeholder="Cost" required><input type="number" id="prev_customers" placeholder="Customers" required></fieldset>
+                </div>
+                <button type="submit">Analyze <i class="fas fa-paper-plane"></i></button>
+            </form>
+        </div>
+    </div>
+
+    <div id="settings-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" aria-label="Close Settings">×</span>
+            <h2>Settings</h2>
+            <label for="api-provider">API Provider URL</label>
+            <input type="text" id="api-provider" value="{{ llm_settings.provider_url }}">
+            <label for="api-key">API Key (from .env)</label>
+            <input type="password" id="api-key" value="{{ groq_api_key }}" readonly>
+            <label for="api-model">Model Name</label>
+            <input type="text" id="api-model" value="{{ llm_settings.model_name }}">
+            <label for="api-temp">Temperature</label>
+            <input type="range" id="api-temp" min="0" max="1" step="0.1" value="{{ llm_settings.temperature }}">
+            <span id="temp-value">{{ llm_settings.temperature }}</span>
+            <button id="save-settings-btn">Save Settings</button>
+            <p id="settings-feedback"></p>
+        </div>
+    </div>
+
+    <script src="/static/js/script.js"></script>
+</body>
+</html>```
+
+

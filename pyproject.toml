@@ -1,0 +1,25 @@
+[project]
+name = "business_analysis_studio"
+version = "1.0.0"
+dependencies = [
+    "langchain",
+    "langgraph",
+    "langchain-core",
+    "langchain-community",
+    "python-dotenv",
+    "langgraph-cli[inmem]>=0.0.7",
+    "langserve>=0.1.1",
+    "fastapi",
+    "uvicorn[standard]",
+    "jinja2",
+    "aiofiles",
+    "pyyaml",
+]
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+# --- This is the section the LangGraph CLI reads ---
+[tool.langserve]
+app = "src.app.server:app"

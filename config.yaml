@@ -1,0 +1,4 @@
+llm_settings:
+  provider_url: "https://api.groq.com/openai/v1"
+  model_name: "llama-3.3-70b-versatile"
+  temperature: 0.7

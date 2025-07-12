@@ -1,0 +1,227 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+:root {
+    --brand-color: #FFA500; /* Orange - Renamed from --bg-color for clarity */
+    --window-bg: #FFFFFF;
+    --text-color: #000000;
+    --agent-msg-bg: #f1f1f1;
+    --user-msg-bg: #ffcda3;
+    --border-radius: 12px;
+    --box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    /* FIX: Changed background to a light grey/white */
+    background-color: #f0f2f5;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: var(--text-color);
+}
+
+#chat-container {
+    width: 90%;
+    max-width: 800px;
+    height: 90vh;
+    background: var(--window-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+header {
+    /* Kept the original orange color using the renamed variable */
+    background: var(--brand-color);
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--text-color);
+    border-bottom: 1px solid #e0e0e0;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.5em;
+    font-weight: 700;
+}
+
+#settings-btn {
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    cursor: pointer;
+    color: var(--text-color);
+    transition: transform 0.3s ease;
+}
+
+#settings-btn:hover {
+    transform: rotate(90deg);
+}
+
+#chat-window {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.message {
+    padding: 10px 15px;
+    border-radius: var(--border-radius);
+    max-width: 80%;
+    animation: slideIn 0.5s ease-out;
+}
+
+.agent-message {
+    background: var(--agent-msg-bg);
+    align-self: flex-start;
+}
+
+.user-message {
+    background: var(--user-msg-bg);
+    align-self: flex-end;
+    text-align: right;
+}
+
+.message p {
+    margin: 0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.report-card {
+    background: #e9f5ff;
+    border-left: 5px solid #2196F3;
+    padding: 15px;
+}
+.report-card h3 { margin-top: 0; }
+.report-card h4 { margin: 10px 0 5px; }
+.report-card ul { padding-left: 20px; margin: 0; }
+.report-card li { margin-bottom: 5px; }
+
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#input-form-container {
+    padding: 20px;
+    border-top: 1px solid #e0e0e0;
+    background: #fcfcfc;
+}
+
+#data-form .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 15px;
+}
+
+#data-form fieldset {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+#data-form input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+#data-form input:last-child { margin-bottom: 0; }
+
+
+#data-form button {
+    width: 100%;
+    padding: 12px;
+    /* Kept the original orange color */
+    background: var(--brand-color);
+    color: var(--text-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+#data-form button:hover {
+    /* A slightly darker orange for hover effect */
+    background: #e69500;
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    animation: fadeIn 0.3s;
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    animation: modal-slide-in 0.5s;
+}
+
+.modal-content label { display: block; margin: 10px 0 5px; }
+.modal-content input[type="text"],
+.modal-content input[type="password"] {
+    width: 95%;
+    padding: 8px;
+}
+
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes modal-slide-in { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+/* Feedback message styles */
+#settings-feedback {
+    margin-top: 10px;
+    font-weight: bold;
+    min-height: 1.2em;
+}
+
+.feedback-success {
+    color: green;
+}
+
+.feedback-error {
+    color: red;
+}

@@ -1,0 +1,17 @@
+# Ignore the virtual environment directory
+venv/
+
+# Other common ignores
+__pycache__/
+*.pyc
+*.env
+*.pyo
+*.pyd
+*.sqlite3
+*.log
+*.vscode/
+*.idea/
+*.DS_Store
+dist/
+build/
+*.egg-info/
