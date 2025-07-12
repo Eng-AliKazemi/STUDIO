@@ -119,7 +119,7 @@ First, clone the project from GitHub to your local machine using the following c
 
 ```bash
 git clone https://github.com/Eng-AliKazemi/STUDIO.git
-cd STUDIO_FINAL_SRC  # Or your project's root folder name
+cd STUDIO
 ```
 
 #### **Step B: Configure Environment Variables (`.env`)**
