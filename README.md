@@ -121,9 +121,11 @@ The application requires an `.env` file to store your secret API key.
 
 1.  Create a new file named `.env` in the root directory of the project.
 2.  Add your LangSmith API key to this file. You can find your key in the [LangSmith Settings page](https://smith.langchain.com/settings).
+3.  Add groq API key.
 
     **.env**
     ```
+    GROQ_API_KEY="gsk_***"
     # --- LangSmith Tracing ---
     # This enables observability for all agent runs.
     LANGCHAIN_TRACING_V2="true"
