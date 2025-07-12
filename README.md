@@ -97,7 +97,7 @@ This folder is the heart of your application. All the actual program logic lives
 
 ## LangGraph Studio Integration
 
-![LangGraph Studio](sreenshots/LANGGRAPH_STUDIO.png)
+![LangGraph Studio](screenshots/LANGGRAPH_STUDIO.png)
 
 ### 1. Overview
 
