@@ -94,12 +94,6 @@ This folder is the heart of your application. All the actual program logic lives
 
 ---
 
-You are absolutely right. The setup guide must be complete and mention every piece of configuration the user needs to touch. My apologies for leaving out those critical details.
-
-Here is the revised and complete "Project Setup" documentation. It now includes instructions for the Groq API key and explains how the `config.yaml` file is used and can be modified via the UI.
-
----
-
 ## Project Setup and Installation
 
 This guide provides the complete instructions to set up and run the application on a local machine.
